@@ -1,0 +1,33 @@
+This MIPS assembly code is implementing a distributed sorting algorithm for three arrays: array1, array2, and array3.
+The primary goal is to merge the first two arrays (array1 and array2) into a third array (array3) in sorted order.
+
+1. Data Section:
+    Three arrays are defined: array1, array2, and array3, each with 12 bytes (3 words) of storage space.
+    A newline string (`newline`) is defined for formatting output.
+
+2. Text Section:
+    Registers $s0, $s1, $s2, $s3, $s4, and $s5 are initialized with integer values.
+    Register $t0 is used as an index.
+
+3. Initialization of array1 and array2:
+    Values from registers $s0, $s1, and $s2 are stored in array1 in sequential locations.
+    Values from registers $s3, $s4, and $s5 are stored in array2 in sequential locations.
+
+4. Distributed Sorting (`distributedSort`):
+   The program enters a loop where it will iterate 12 times (since we're dealing with 12 elements).
+    Inside the loop, the program calls two functions: `findMinArr` and `mergeAll`.
+    findMinArr compares the current elements at the same index in array1 and array2 and places the smaller element in array3.
+    It also resets the element in `array2` to 0 to mark it as processed.
+    mergeAll is called after processing all elements in a single iteration. It moves non-zero elements from array1 and array2 into array3.
+
+5. Merging (merge):
+    In the findMinArr function, if the element from array2 is smaller, it is moved to array3, and the element in array2 is marked as 0 (indicating it has been processed).
+    In the merge function, the smaller element from array1 is moved to array3, and the element in array1 is marked as 0 (indicating it has been processed).
+
+6. Printing Results (while Loop):
+    After sorting and merging, the program enters a loop to print the elements of array3.
+    It uses system calls to print integers and newlines.
+    The loop continues until all elements of `array3` have been printed.
+
+7. Exit:
+   Finally, the program exits with a system call.
